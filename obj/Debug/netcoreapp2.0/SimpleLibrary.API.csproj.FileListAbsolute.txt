@@ -1,0 +1,11 @@
+c:\users\ma\Source\Repos\SimpleLibrary\SimpleLibrary\obj\Debug\netcoreapp2.0\SimpleLibrary.API.csproj.CoreCompileInputs.cache
+c:\users\ma\Source\Repos\SimpleLibrary\SimpleLibrary\obj\Debug\netcoreapp2.0\SimpleLibrary.API.AssemblyInfoInputs.cache
+c:\users\ma\Source\Repos\SimpleLibrary\SimpleLibrary\obj\Debug\netcoreapp2.0\SimpleLibrary.API.AssemblyInfo.cs
+c:\users\ma\Source\Repos\SimpleLibrary\SimpleLibrary\obj\Debug\netcoreapp2.0\SimpleLibrary.API.dll
+c:\users\ma\Source\Repos\SimpleLibrary\SimpleLibrary\obj\Debug\netcoreapp2.0\SimpleLibrary.API.pdb
+c:\users\ma\Source\Repos\SimpleLibrary\SimpleLibrary\bin\Debug\netcoreapp2.0\SimpleLibrary.API.deps.json
+c:\users\ma\Source\Repos\SimpleLibrary\SimpleLibrary\bin\Debug\netcoreapp2.0\SimpleLibrary.API.runtimeconfig.json
+c:\users\ma\Source\Repos\SimpleLibrary\SimpleLibrary\bin\Debug\netcoreapp2.0\SimpleLibrary.API.runtimeconfig.dev.json
+c:\users\ma\Source\Repos\SimpleLibrary\SimpleLibrary\bin\Debug\netcoreapp2.0\SimpleLibrary.API.dll
+c:\users\ma\Source\Repos\SimpleLibrary\SimpleLibrary\bin\Debug\netcoreapp2.0\SimpleLibrary.API.pdb
+C:\Users\ma\Source\Repos\SimpleLibrary\SimpleLibrary\obj\Debug\netcoreapp2.0\SimpleLibrary.API.csprojAssemblyReference.cache
