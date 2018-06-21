@@ -59,5 +59,26 @@ namespace SimpleLibrary.API.Controllers
                 new BookGetModel(postModel.Entity)
                 );
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(Guid authorId, Guid id)
+        {
+            if (!_rpeo.AuthorExists(authorId))
+                return NotFound();
+
+            var book = _rpeo.GetBookForAuthor(authorId, id);
+
+            if (book == null)
+                return NotFound();
+
+            _rpeo.DeleteBook(book);
+
+            if (!_rpeo.Save())
+            {
+                throw new Exception($"Failed Deleting Book AuthorId: {authorId}, BookId: {id} ");
+            }
+
+            return NoContent();
+        }
     }
 }

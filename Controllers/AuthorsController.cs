@@ -48,5 +48,21 @@ namespace SimpleLibrary.API.Controllers
             return CreatedAtRoute("GetAuthor", new { id = postModel.Id }, new AuthorGetModel(postModel.Entity));
 
         }
+
+        [HttpDelete("{id}")]
+        public IActionResult Delete(Guid id)
+        {
+            var author = _libraryRepository.GetAuthor(id);
+
+            if (author == null)
+                return NotFound();
+
+            _libraryRepository.DeleteAuthor(author);
+
+            if (!_libraryRepository.Save())
+                throw new Exception($"Failed Deleting Author Id:{id}");
+
+            return NoContent();
+        }
     }
 }
