@@ -16,7 +16,7 @@ namespace SimpleLibrary.API.Services
         IEnumerable<Book> GetBooksForAuthor(Guid authorId);
         Book GetBookForAuthor(Guid authorId, Guid bookId);
         void AddBookForAuthor(Guid authorId, Book book);
-        void UpdateBookForAuthor(Book book);
+        Book UpdateBookForAuthor(Book book);
         void DeleteBook(Book book);
         bool Save();
     }

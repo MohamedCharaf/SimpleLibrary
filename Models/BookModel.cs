@@ -64,4 +64,42 @@ namespace SimpleLibrary.API.Models
             get { return GetPropertyValue<string>(); }
         }
     }
+
+    public class BookPutModel : ModelBase<Book>
+    {
+        public Guid Id { get; set; }
+        public Guid AuthorId { get; set; }
+
+        public string Title
+        {
+            get { return GetPropertyValue<string>(); }
+            set { SetPropertyValue(value); }
+        }
+
+        public string Description
+        {
+            get { return GetPropertyValue<string>(); }
+            set { SetPropertyValue(value); }
+        }
+
+    }
+
+    public class BookPatchModel : ModelBase<Book>
+    {
+        public BookPatchModel(Book entity) : base(entity)
+        {
+        }
+
+        public string Title
+        {
+            get { return GetPropertyValue<string>(); }
+            set { SetPropertyValue(value); }
+        }
+
+        public string Description
+        {
+            get { return GetPropertyValue<string>(); }
+            set { SetPropertyValue(value); }
+        }
+    }
 }

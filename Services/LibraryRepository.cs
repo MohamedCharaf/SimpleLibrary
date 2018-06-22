@@ -94,9 +94,17 @@ namespace SimpleLibrary.API.Services
                         .Where(b => b.AuthorId == authorId).OrderBy(b => b.Title).ToList();
         }
 
-        public void UpdateBookForAuthor(Book book)
+        public Book UpdateBookForAuthor(Book book)
         {
-            // no code in this implementation
+            var record = _context.Books.SingleOrDefault(b => b.Id == book.Id && b.AuthorId == book.AuthorId);
+
+            if (record != null)
+            {
+                record.Title = book.Title;
+                record.Description = book.Description;
+                _context.Books.Update(record);
+            }
+            return record;
         }
 
         public bool Save()
