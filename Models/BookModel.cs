@@ -1,5 +1,6 @@
 ﻿using SimpleLibrary.API.Domain;
 using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace SimpleLibrary.API.Models
 {
@@ -52,12 +53,16 @@ namespace SimpleLibrary.API.Models
             get { return GetPropertyValue<Guid>(); }
         }
 
+        [Required]
+        [MaxLength(100)]
         public string Title
         {
             set { SetPropertyValue(value); }
             get { return GetPropertyValue<string>(); }
         }
 
+        [Required]
+        [MaxLength(100)]
         public string Description
         {
             set { SetPropertyValue(value); }

@@ -27,7 +27,7 @@ namespace SimpleLibrary.API.Controllers
             if (authors == null)
                 return BadRequest();
 
-            var entities = authors.Select(a => a.Entity).ToList();
+            var entities = authors.Select(a => a.GetEntity()).ToList();
 
             foreach (var entity in entities)
             {

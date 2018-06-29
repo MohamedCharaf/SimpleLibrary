@@ -1,4 +1,5 @@
 ﻿using SimpleLibrary.API.Domain;
+using SimpleLibrary.API.Helpers;
 using System;
 using System.Collections.Generic;
 
@@ -7,6 +8,8 @@ namespace SimpleLibrary.API.Services
     public interface ILibraryRepository
     {
         IEnumerable<Author> GetAuthors();
+        IEnumerable<Author> GetAuthors(int pageNumber, int pageSize);
+        PagedList<Author> Paginate(int pageNumber, int pageSize);
         Author GetAuthor(Guid authorId);
         IEnumerable<Author> GetAuthors(IEnumerable<Guid> authorIds);
         void AddAuthor(Author author);

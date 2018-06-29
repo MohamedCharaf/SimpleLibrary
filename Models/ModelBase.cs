@@ -24,8 +24,7 @@ namespace SimpleLibrary.API.Models
 
         #region Properities
 
-        [JsonIgnore]
-        public virtual T Entity { get; protected set; }
+        protected virtual T Entity { get; set; }
 
         #endregion
 
@@ -61,6 +60,8 @@ namespace SimpleLibrary.API.Models
                 }
             };
         }
+
+        public T GetEntity() { return Entity; }
         #endregion
 
 

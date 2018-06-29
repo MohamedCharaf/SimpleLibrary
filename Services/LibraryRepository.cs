@@ -1,4 +1,5 @@
 ﻿using SimpleLibrary.API.Domain;
+using SimpleLibrary.API.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -66,7 +67,7 @@ namespace SimpleLibrary.API.Services
 
         public IEnumerable<Author> GetAuthors()
         {
-            return _context.Authors.OrderBy(a => a.FirstName).ThenBy(a => a.LastName);
+            return _context.Authors.OrderBy(a => a.FirstName).ThenBy(a => a.LastName).ToList();
         }
 
         public IEnumerable<Author> GetAuthors(IEnumerable<Guid> authorIds)
@@ -110,6 +111,27 @@ namespace SimpleLibrary.API.Services
         public bool Save()
         {
             return (_context.SaveChanges() >= 0);
+        }
+
+        public IEnumerable<Author> GetAuthors(int pageNumber, int pageSize)
+        {
+            var result = _context.Authors
+                .OrderBy(a => a.FirstName)
+                .ThenBy(a => a.LastName)
+                .Skip(pageSize * (pageNumber - 1))
+                .Take(pageSize)
+                .ToList();
+
+            return result;
+        }
+
+        public PagedList<Author> Paginate(int pageNumber, int pageSize)
+        {
+            var result = _context.Authors
+                .OrderBy(a => a.FirstName)
+                .ThenBy(a => a.LastName);
+
+            return PagedList<Author>.Create(result, pageNumber, pageSize);
         }
     }
 }

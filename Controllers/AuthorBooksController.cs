@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+using SimpleLibrary.API.Helpers;
 using SimpleLibrary.API.Models;
 using SimpleLibrary.API.Services;
 using System;
@@ -43,21 +44,27 @@ namespace SimpleLibrary.API.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post(Guid authorId, [FromBody] BookPostModel postModel)
+        public IActionResult Post(Guid authorId, [FromBody] BookPostModel model)
         {
-            if (postModel == null)
+            if (model == null)
                 return BadRequest();
+
+            if (model.Title == model.Description)
+                ModelState.AddModelError(nameof(AuthorBooksController), "Title cannot equal description");
+
+            if (!ModelState.IsValid)
+                return new UnprocessibleEntityObjectResult(ModelState);
 
             if (!_rpeo.AuthorExists(authorId))
                 return NotFound();
 
-            _rpeo.AddBookForAuthor(authorId, postModel.Entity);
+            _rpeo.AddBookForAuthor(authorId, model.GetEntity());
 
             _rpeo.Save();
 
             return CreatedAtRoute("GetAuthorBook",
-                new { authorId, id = postModel.Id },
-                new BookGetModel(postModel.Entity)
+                new { authorId, id = model.Id },
+                new BookGetModel(model.GetEntity())
                 );
         }
 
@@ -87,7 +94,7 @@ namespace SimpleLibrary.API.Controllers
         {
             model.AuthorId = authorId;
             model.Id = id;
-           var book = _rpeo.UpdateBookForAuthor(model.Entity);
+           var book = _rpeo.UpdateBookForAuthor(model.GetEntity());
 
             if (book == null)
                 return NotFound();
@@ -118,7 +125,7 @@ namespace SimpleLibrary.API.Controllers
 
             //add validation
 
-            _rpeo.UpdateBookForAuthor(patchModel.Entity);
+            _rpeo.UpdateBookForAuthor(patchModel.GetEntity());
             
             if (!_rpeo.Save())
             {
